@@ -21,6 +21,9 @@ public partial class SistemaCftContext : DbContext
 
     public virtual DbSet<Estudiante> Estudiantes { get; set; }
 
+    public virtual DbSet<Nota> Nota { get; set; }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
