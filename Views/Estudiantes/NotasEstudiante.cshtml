@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Sistema_CFT.Models.Nota>
+
+@{
+    ViewData["Title"] = "Notas del Estudiante";
+}
+
+<h1>Notas del Estudiante</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Calificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ponderacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstudianteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsignaturaId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Calificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ponderacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaRegistro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstudianteId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AsignaturaId)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

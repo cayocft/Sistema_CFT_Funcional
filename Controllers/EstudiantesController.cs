@@ -44,6 +44,29 @@ namespace Sistema_CFT.Controllers
             return View(estudiante);
         }
 
+        // GET: Estudiantes/NotasEstudiante/1
+        [HttpGet]
+        public async Task<IActionResult> NotasEstudiante(int? id)
+        {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            IQueryable<Nota> Notas = _context.Nota;
+            Notas = Notas.Where(m => m.EstudianteId == id);
+
+            var notas = await Notas.ToListAsync();
+            if (notas == null)
+            {
+                return NotFound();
+            }
+            return View(notas);
+            //var notas = _context.Nota.Find(EstudianteId, AsignaturaId);
+
+        }
+
+
         // GET: Estudiantes/Create
         public IActionResult Create()
         {
