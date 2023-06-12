@@ -29,11 +29,6 @@ _Depurar el el proyecto_
 ```
 1. Iniciar para depurar
 ```
-_Para generar los modelos conectando a la base de datos_
-```
-1. Scaffold-DbContext "server=localhost; port=3306; database=sistema_cft; uid=root; password=;" Pomelo.EntityFrameworkCore.MySql -o Models
-2. Considera cambiar "database" el usuario y password: "uid" y "password"
-```
 
 _Agregar en el archivo "appsettings.json" la conexción a la base de datos del proyecto_
 

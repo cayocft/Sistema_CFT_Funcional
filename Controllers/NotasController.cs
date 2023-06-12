@@ -9,110 +9,87 @@ using Sistema_CFT.Models;
 
 namespace Sistema_CFT.Controllers
 {
-    public class EstudiantesController : Controller
+    public class NotasController : Controller
     {
         private readonly SistemaCftContext _context;
 
-        public EstudiantesController(SistemaCftContext context)
+        public NotasController(SistemaCftContext context)
         {
             _context = context;
         }
 
-        // GET: Estudiantes
+        // GET: Notas
         public async Task<IActionResult> Index()
         {
-              return _context.Estudiantes != null ? 
-                          View(await _context.Estudiantes.ToListAsync()) :
-                          Problem("Entity set 'SistemaCftContext.Estudiantes'  is null.");
+              return _context.Nota != null ? 
+                          View(await _context.Nota.ToListAsync()) :
+                          Problem("Entity set 'SistemaCftContext.Nota'  is null.");
         }
 
-        // GET: Estudiantes/Details/5
+        // GET: Notas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Estudiantes == null)
+            if (id == null || _context.Nota == null)
             {
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiantes
+            var nota = await _context.Nota
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (estudiante == null)
+            if (nota == null)
             {
                 return NotFound();
             }
 
-            return View(estudiante);
+            return View(nota);
         }
 
-        // GET: Estudiantes/NotasEstudiante/1
-        [HttpGet]
-        public async Task<IActionResult> NotasEstudiante(int? id)
-        {
-
-            if (id == 0)
-            {
-                return NotFound();
-            }
-            IQueryable<Nota> Notas = _context.Nota;
-            Notas = Notas.Where(m => m.EstudianteId == id);
-
-            var notas = await Notas.ToListAsync();
-            if (notas == null)
-            {
-                return NotFound();
-            }
-            return View(notas);
-            //var notas = _context.Nota.Find(EstudianteId, AsignaturaId);
-
-        }
-
-
-        // GET: Estudiantes/Create
+        // GET: Notas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Estudiantes/Create
+        // POST: Notas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Rut,Correo,Edad,FechaNacimiento")] Estudiante estudiante)
+        public async Task<IActionResult> Create([Bind("Id,Calificacion,Ponderacion,FechaRegistro,EstudianteId,AsignaturaId")] Nota nota)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(estudiante);
+                _context.Add(nota);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudiante);
+            return View(nota);
         }
 
-        // GET: Estudiantes/Edit/5
+        // GET: Notas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Estudiantes == null)
+            if (id == null || _context.Nota == null)
             {
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiantes.FindAsync(id);
-            if (estudiante == null)
+            var nota = await _context.Nota.FindAsync(id);
+            if (nota == null)
             {
                 return NotFound();
             }
-            return View(estudiante);
+            return View(nota);
         }
 
-        // POST: Estudiantes/Edit/5
+        // POST: Notas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Rut,Correo,Edad,FechaNacimiento")] Estudiante estudiante)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Calificacion,Ponderacion,FechaRegistro,EstudianteId,AsignaturaId")] Nota nota)
         {
-            if (id != estudiante.Id)
+            if (id != nota.Id)
             {
                 return NotFound();
             }
@@ -121,12 +98,12 @@ namespace Sistema_CFT.Controllers
             {
                 try
                 {
-                    _context.Update(estudiante);
+                    _context.Update(nota);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstudianteExists(estudiante.Id))
+                    if (!NotaExists(nota.Id))
                     {
                         return NotFound();
                     }
@@ -137,49 +114,49 @@ namespace Sistema_CFT.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudiante);
+            return View(nota);
         }
 
-        // GET: Estudiantes/Delete/5
+        // GET: Notas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Estudiantes == null)
+            if (id == null || _context.Nota == null)
             {
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiantes
+            var nota = await _context.Nota
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (estudiante == null)
+            if (nota == null)
             {
                 return NotFound();
             }
 
-            return View(estudiante);
+            return View(nota);
         }
 
-        // POST: Estudiantes/Delete/5
+        // POST: Notas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Estudiantes == null)
+            if (_context.Nota == null)
             {
-                return Problem("Entity set 'SistemaCftContext.Estudiantes'  is null.");
+                return Problem("Entity set 'SistemaCftContext.Nota'  is null.");
             }
-            var estudiante = await _context.Estudiantes.FindAsync(id);
-            if (estudiante != null)
+            var nota = await _context.Nota.FindAsync(id);
+            if (nota != null)
             {
-                _context.Estudiantes.Remove(estudiante);
+                _context.Nota.Remove(nota);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EstudianteExists(int id)
+        private bool NotaExists(int id)
         {
-          return (_context.Estudiantes?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Nota?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

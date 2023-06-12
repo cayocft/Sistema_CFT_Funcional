@@ -10689,11 +10689,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT\\Sistema_CFT.csproj",
+      "projectUniqueName": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT_Funcional\\Sistema_CFT.csproj",
       "projectName": "Sistema_CFT",
-      "projectPath": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT\\Sistema_CFT.csproj",
+      "projectPath": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT_Funcional\\Sistema_CFT.csproj",
       "packagesPath": "C:\\Users\\Edgardo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT\\obj\\",
+      "outputPath": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT_Funcional\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Edgardo\\AppData\\Roaming\\NuGet\\NuGet.Config",

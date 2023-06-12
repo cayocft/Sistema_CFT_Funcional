@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wGbMPw2/ds+L1bv0r/8ufUH0zFK1c81poVUL6XFJHNg60iHRczibzAYW3/LjQq3jEf9nAeEHszRMJ54fk5VBnQ==",
+  "dgSpecHash": "kNWhTs0/Zy/5P10kIaWog5TRCSTOSn4jd83JPpF20xaFIABh/k9pZeWbx32RBM/Bq8dvpqacNR5UaqC1FES5xg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT\\Sistema_CFT.csproj",
+  "projectFilePath": "C:\\Users\\Edgardo\\Documents\\CFT\\2023\\Semestre I\\Desarrollo con Herramientas Privadas\\Proyectos Visual Studio\\Sistema_CFT_Funcional\\Sistema_CFT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Edgardo\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Edgardo\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
