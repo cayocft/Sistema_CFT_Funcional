@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Sistema_CFT.Models;
 
 namespace Sistema_CFT.Controllers
@@ -46,22 +48,71 @@ namespace Sistema_CFT.Controllers
 
         // GET: Estudiantes/NotasEstudiante/1
         [HttpGet]
-        public async Task<IActionResult> NotasEstudiante(int? id)
+        public async Task<IActionResult> NotasEstudiante(int? id_estudiante, int? id_asignatura)
+        {
+            float promedio = 0;
+            int avancePonderacion = 0;
+            if (id_estudiante == 0 && id_asignatura == 0)
+            {
+                return NotFound();
+            }
+            IQueryable<Nota> Notas = _context.Nota;
+            Notas = Notas.Where(m => m.EstudianteId == id_estudiante)
+                .Where(m => m.AsignaturaId == id_asignatura);
+                
+            var notas = await Notas.ToListAsync();
+
+            //IQueryable<Asignatura> Asignaturas = _context.Asignaturas;
+            var Asignatura = _context.Asignaturas.First(a => a.Id == id_asignatura);
+            
+            foreach(var nota in notas)
+            {
+                if(nota.Calificacion != null && nota.Ponderacion != null)
+                {
+                    promedio = promedio + (float)(nota.Calificacion * (nota.Ponderacion/100));
+                    avancePonderacion = (int)(avancePonderacion + nota.Ponderacion);
+                }
+               
+            }
+            System.Diagnostics.Debug.WriteLine("------------------------------------------");
+            Debug.WriteLine(promedio);
+            if (notas.Count() == 0)
+            {
+                return NotFound();
+            }
+            ViewData["Promedio"] = promedio;
+            ViewData["AvancePonderacion"] = avancePonderacion;
+            ViewData["Asignatura"] = Asignatura.Nombre;
+            return View(notas);
+            //var notas = _context.Nota.Find(EstudianteId, AsignaturaId);
+
+        }
+
+
+        // GET: Estudiantes/AsignaturasPorEstudiante/1
+        [HttpGet]
+        public async Task<IActionResult> AsignaturasPorEstudiante(int? id)
         {
 
             if (id == 0)
             {
                 return NotFound();
             }
-            IQueryable<Nota> Notas = _context.Nota;
-            Notas = Notas.Where(m => m.EstudianteId == id);
+            System.Diagnostics.Debug.WriteLine("------------------------------------------");
+            Debug.WriteLine(id);
+            IQueryable<Asignaturaasignada> AsignaturasAsignadas = _context.Asignaturaasignada;
+            AsignaturasAsignadas =  AsignaturasAsignadas.Where(m => m.EstudianteId == id)
+                .Include(m => m.Asignatura);
 
-            var notas = await Notas.ToListAsync();
-            if (notas == null)
+            
+            var asignaturasAsignadas = await AsignaturasAsignadas.ToListAsync();
+            if (asignaturasAsignadas.Count() == 0)
             {
                 return NotFound();
             }
-            return View(notas);
+            System.Diagnostics.Debug.WriteLine("------------------------------------------");
+            Debug.WriteLine(asignaturasAsignadas);
+            return View(asignaturasAsignadas);
             //var notas = _context.Nota.Find(EstudianteId, AsignaturaId);
 
         }

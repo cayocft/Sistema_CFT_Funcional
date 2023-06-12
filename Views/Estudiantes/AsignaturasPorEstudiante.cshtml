@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Sistema_CFT.Models.Asignaturaasignada>
+
+@{
+    ViewData["Title"] = "Notas del Estudiante";
+}
+
+<h1>Notas del Estudiante</h1>
+
+
+<div>
+    @foreach (var item in Model)
+    {
+        <a asp-action="NotasEstudiante" asp-route-id_estudiante="@item.EstudianteId" asp-route-id_asignatura="@item.AsignaturaId"> Ver Notas de : @item.Asignatura.Nombre</a>
+    }
+</div>

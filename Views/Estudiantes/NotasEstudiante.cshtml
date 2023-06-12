@@ -4,9 +4,10 @@
     ViewData["Title"] = "Notas del Estudiante";
 }
 
-<h1>Notas del Estudiante</h1>
+<h1>Notas del Estudiante para asignatura: <b>@ViewData["Asignatura"]</b></h1>
 
-
+<h3><b>Promedio es: @ViewData["Promedio"] </b></h3>
+<h3><b>Avance Ponderación : @ViewData["AvancePonderacion"] % </b></h3>
 <table class="table">
     <thead>
         <tr>
